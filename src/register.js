@@ -1,4 +1,4 @@
-const baseUrl = 'http://127.0.0.1:8000/user';
+let baseUrl = 'http://127.0.0.1:8000/user';
 
  // 회원가입
  document.getElementById('register-form').addEventListener('submit', async (event) => {
