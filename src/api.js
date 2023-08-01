@@ -6,26 +6,31 @@ let url = `http://127.0.0.1:8000/chatbot/`;
 
 // API 요청 함수
 export const apiPost = async () => {
-  const userToken = getCookie("token");
-  const requestOptions = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": `Token ${userToken}`,
-    },
-    body: JSON.stringify(data),
-  };
+  try {
+    // 토큰을 쿠키에서 가져옴
+    const usertoken = getCookie("token");
 
-    try {
-      const response = await fetch(url, requestOptions);
-      const result = await response.json();
-  
-      console.log(result);
-      printAnswer(result.choices[0].message.content);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+    // 요청 헤더에 토큰 추가
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Token ${usertoken}`, // 토큰을 Authorization 헤더에 포함
+      },
+      body: JSON.stringify(data),
+    });
+
+    // if (!response.ok) {
+    //   throw new Error("네트워크 응답이 올바르지 않습니다.");
+    // }
+
+    const result = await response.json();
+    console.log(result);
+    printAnswer(result.choices[0].message.content);
+  } catch (err) {
+    console.error("에러:", err);
+  }
+};
 
 // 토큰을 쿠키에서 가져오는 함수
 function getCookie(name) {
