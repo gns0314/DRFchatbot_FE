@@ -28,12 +28,12 @@ $input.addEventListener("input", (e) => {
 const sendQuestion = (question) => {
   if (question) {
     data.push({
-      role: "user",
-      content: question,
+      prompt: "user",
+      response: question,
     });
     questionData.push({
-      role: "user",
-      content: question,
+      prompt: "user",
+      response: question,
     });
   }
 };
@@ -83,10 +83,4 @@ $form.addEventListener("submit", (e) => {
     apiPost();
   }
   e.preventDefault(); // submit 이벤트의 기본 동작 막기
-});
-
-// input 값이 변경될 때 kakaoImgApiInsert 함수 호출
-$form.addEventListener("submit", function handleFormSubmit(event) {
-  event.preventDefault(); // 폼 제출 기본 동작 막기
-  $form.removeEventListener("submit", handleFormSubmit); // 이벤트 리스너 제거
 });

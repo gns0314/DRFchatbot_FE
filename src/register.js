@@ -5,7 +5,6 @@ let baseUrl = 'http://127.0.0.1:8000/user';
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = {
-      username: formData.get('username'),
       email: formData.get('email'),
       password: formData.get('password'),
     };
