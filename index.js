@@ -28,12 +28,12 @@ $input.addEventListener("input", (e) => {
 const sendQuestion = (question) => {
   if (question) {
     data.push({
-      prompt: "user",
-      response: question,
+      role: "user",
+      content: question,
     });
     questionData.push({
-      prompt: "user",
-      response: question,
+      role: "user",
+      content: question,
     });
   }
 };
