@@ -39,7 +39,7 @@ document.getElementById('login-form').addEventListener('submit', async (event) =
 
     // 토큰을 쿠키로 저장
     setCookie('token', result.token, 1);
-    window.location.href = '/chat.html' // 챗봇 페이지 URL로 변경
+    window.location.href = 'DRFchatbot_FE/chat.html' // 챗봇 페이지 URL로 변경
   } catch (error) {
     console.error('Error:', error);
   }

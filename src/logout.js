@@ -16,7 +16,7 @@ document.getElementById('logout-form').addEventListener('submit', async (event) 
       // 쿠키 삭제
       document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 
-      window.location.href = '/index.html';
+      window.location.href = 'DRFchatbot_FE/index.html';
     } else {
       const result = await response.json();
       console.log('로그아웃 실패:', result);
