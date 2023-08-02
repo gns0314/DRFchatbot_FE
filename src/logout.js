@@ -12,8 +12,11 @@ document.getElementById('logout-form').addEventListener('submit', async (event) 
     });
 
     if (response.ok) {
-      // 로그아웃이 성공한 경우, 로그인 페이지로 이동
-      window.location.href = '/login.html'
+      // 로그아웃이 성공한 경우, 인덱스 페이지로 이동
+      // 쿠키 삭제
+      document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+
+      window.location.href = '/index.html';
     } else {
       const result = await response.json();
       console.log('로그아웃 실패:', result);

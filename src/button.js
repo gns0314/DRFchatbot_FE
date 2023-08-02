@@ -1,4 +1,4 @@
-import { $form } from "../index.js";
+import { $form } from "./chat.js";
 
 // 버튼을 로딩 중 상태로 변경 함수
 export function buttonchange() {

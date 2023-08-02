@@ -1,4 +1,4 @@
-import { $form } from "../index.js";
+import { $form } from "./chat.js";
 
 // 추가 질문을 담는 div 생성
 export let additionalQuestionDiv;

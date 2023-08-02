@@ -4,18 +4,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>메뉴챗봇</title>
+    <title>메뉴추천 챗봇</title>
+    <link rel="stylesheet" href="./css/common.css">
 </head>
 <body>
-  <a href="./chat.html">챗봇 이용</a>
-  <a href="./login.html">로그인</a>
-  <a href="./register.html">회원가입</a>
-  <a href="./answer_list.html">채팅 저장 내역</a>
-  <form id="logout-form" action="">
-    <button type="submit">로그아웃</button>
-  </form>
-
-  <script src="./src/logout.js" type="module"></script>
+  <div class="header">
+    <h1><a href="index.html">저녁메뉴 추천 봇</a></h1>
+    <div class="header-click">
+      <a href="./login.html">로그인</a>
+      <a href="./register.html">회원가입</a>
+      <form id="logout-form" class="logout-form">
+        <div class="btn-group"><button type="submit" class="btn">로그아웃</button>
+        </div>
+      </div>
+    </div>
+    <div class="menu">
+      <a href="./chat.html">챗봇이용</a>
+      <a href="./answer_list.html">채팅내역</a>
+    </div>
+    </form>
+    <script src="./src/logout.js" type="module"></script>
 </body>
 </html>
 

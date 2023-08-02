@@ -14,10 +14,6 @@ async function fetchConversationData() {
         },
       });
   
-      if (!response.ok) {
-        throw new Error("네트워크 응답이 올바르지 않습니다.");
-      }
-  
       const result = await response.json();
       console.log(result); 
       printConversation(result);
@@ -27,19 +23,25 @@ async function fetchConversationData() {
   }
   
   function printConversation(conversations) {
-    const conversationContainer = document.getElementById("conversationContainer");
+    const chatscreen = document.getElementById("chat-screen");
 
     for (const conversation of conversations) {
       const userMessage = document.createElement("div");
-      userMessage.textContent = `User: ${conversation.prompt}`;
-      conversationContainer.appendChild(userMessage);
+      userMessage.classList.add("user-chat");
+      const chatContent = document.createElement("div");
+      chatContent.classList.add("chat-content");
+      chatContent.textContent = `${conversation.prompt}`;
+      userMessage.appendChild(chatContent);
+      chatscreen.appendChild(userMessage);
   
       const aiMessage = document.createElement("div");
-      aiMessage.textContent = `AI: ${conversation.response}`;
-      conversationContainer.appendChild(aiMessage);
+      aiMessage.classList.add("ai-chat");
+      const aichatContent = document.createElement("div");
+      aichatContent.classList.add("chat-content")
+      aichatContent.textContent = `${conversation.response}`;
+      aiMessage.appendChild(aichatContent)
+      chatscreen.appendChild(aiMessage);
   
-      const separator = document.createElement("hr");
-      conversationContainer.appendChild(separator);
     }
   }
   
