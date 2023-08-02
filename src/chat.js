@@ -9,7 +9,6 @@ import { cuisineType } from "./radio.js";
 export const $form = document.querySelector("form");
 const $input = document.querySelector("input");
 
-
 // 사용자의 질문
 let question;
 
@@ -36,7 +35,19 @@ const sendQuestion = (question) => {
   }
 };
 
-$form.addEventListener("submit", (e) => {
+$form.addEventListener("submit", async (e) => {
+  e.preventDefault(); // submit 이벤트의 기본 동작 막기
+
+  // CSRF 토큰 가져오기
+  const csrftoken = getCookie("token");
+
+  if (!csrftoken) {
+    // 로그인이 필요한 경우 로그인 페이지로 이동
+    alert("로그인이 필요합니다.");
+    window.location.href = "./login.html";
+    return;
+  }
+
   if ($chatList.querySelectorAll(".answer").length >= 2) {
     // 답변 리스트 초기화 여부를 묻는 확인 메시지
     const confirmation = confirm("답변이 가득 찼습니다. 초기화 하시겠습니까?");
@@ -51,14 +62,11 @@ $form.addEventListener("submit", (e) => {
     ingredient = $input.value;
     num = document.getElementById("num").value;
     if (ingredient) {
-      // 재료에 대한 입력이 있는경우
+      // 재료에 대한 입력이 있는 경우
       sendQuestion(
         `냉장고에 ${ingredient}가 있고 나는 ${cuisineType}을 만들고 싶어 ${ingredient}로 만들 수 있는 ${cuisineType}을 ${num}가지 메뉴만추천해줘.`
       );
-    } else if (
-      !ingredient &&
-      $chatList.querySelectorAll(".answer").length < 1
-    ) {
+    } else if (!ingredient && $chatList.querySelectorAll(".answer").length < 1) {
       // 재료에 대한 입력이 없는 경우
       sendQuestion(
         `가정집에서 간단하게 만들수있는 ${cuisineType}을 ${num}가지 메뉴만추천해줘`
@@ -80,5 +88,20 @@ $form.addEventListener("submit", (e) => {
     printQuestion();
     apiPost();
   }
-  e.preventDefault(); // submit 이벤트의 기본 동작 막기
 });
+
+// CSRF 토큰을 쿠키에서 가져오는 함수
+function getCookie(name) {
+  let cookieValue = null;
+  if (document.cookie && document.cookie !== "") {
+    const cookies = document.cookie.split(";");
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim();
+      if (cookie.substring(0, name.length + 1) === name + "=") {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        break;
+      }
+    }
+  }
+  return cookieValue;
+}
