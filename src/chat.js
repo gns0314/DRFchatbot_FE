@@ -44,7 +44,7 @@ $form.addEventListener("submit", async (e) => {
   if (!csrftoken) {
     // 로그인이 필요한 경우 로그인 페이지로 이동
     alert("로그인이 필요합니다.");
-    window.location.href = "./login.html";
+    window.location.href = "https://gns0314.github.io/DRFchatbot_FE/login.html";
     return;
   }
 
