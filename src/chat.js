@@ -38,7 +38,7 @@ const sendQuestion = (question) => {
 $form.addEventListener("submit", async (e) => {
   e.preventDefault(); // submit 이벤트의 기본 동작 막기
 
-  // CSRF 토큰 가져오기
+  // 토큰 가져오기
   const token = getCookie("token");
 
   if (!token) {
@@ -90,7 +90,7 @@ $form.addEventListener("submit", async (e) => {
   }
 });
 
-// CSRF 토큰을 쿠키에서 가져오는 함수
+// 토큰을 쿠키에서 가져오는 함수
 function getCookie(name) {
   let cookieValue = null;
   if (document.cookie && document.cookie !== "") {

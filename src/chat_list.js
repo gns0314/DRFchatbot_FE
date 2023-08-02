@@ -7,7 +7,7 @@ async function fetchConversationData() {
     window.location.href = "https://gns0314.github.io/DRFchatbot_FE/login.html";
     return;
   }
-    
+
   try {
 
       const csrftoken = getCookie("token");
@@ -54,7 +54,7 @@ async function fetchConversationData() {
     }
   }
   
-  // CSRF 토큰을 쿠키에서 가져오는 함수
+  //  토큰을 쿠키에서 가져오는 함수
   function getCookie(name) {
     let cookieValue = null;
     if (document.cookie && document.cookie !== "") {
