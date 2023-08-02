@@ -1,5 +1,14 @@
 async function fetchConversationData() {
-    try {
+  const token = getCookie("token");
+
+  if (!token) {
+    // 로그인이 필요한 경우 로그인 페이지로 이동
+    alert("로그인이 필요합니다.");
+    window.location.href = "https://gns0314.github.io/DRFchatbot_FE/login.html";
+    return;
+  }
+    
+  try {
 
       const csrftoken = getCookie("token");
 
