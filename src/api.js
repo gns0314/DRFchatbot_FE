@@ -8,14 +8,14 @@ let url = `http://127.0.0.1:8000/chatbot/`;
 export const apiPost = async () => {
   try {
     // 토큰을 쿠키에서 가져옴
-    const usertoken = getCookie("token");
+    const csrftoken = getCookie("token");
 
     // 요청 헤더에 토큰 추가
     const response = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Token ${usertoken}`, // 토큰을 Authorization 헤더에 포함
+        "Authorization": `Token ${csrftoken}`, // 토큰을 Authorization 헤더에 포함
       },
       body: JSON.stringify(data),
     });
@@ -26,13 +26,17 @@ export const apiPost = async () => {
 
     const result = await response.json();
     console.log(result);
-    printAnswer(result.choices[0].message.content);
+    if (result.response) {
+      printAnswer(result.response);
+    } else if (result.error) {
+      printAnswer(result.error);
+    } 
   } catch (err) {
     console.error("에러:", err);
   }
 };
 
-// 토큰을 쿠키에서 가져오는 함수
+// CSRF 토큰을 쿠키에서 가져오는 함수
 function getCookie(name) {
   let cookieValue = null;
   if (document.cookie && document.cookie !== "") {
